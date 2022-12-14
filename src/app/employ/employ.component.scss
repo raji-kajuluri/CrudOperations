@@ -1,0 +1,36 @@
+thead {
+    background-color: black;
+    border: 2px solid black;
+    text-align: center;
+    color: white;
+
+}
+
+tbody {
+    text-align: center;
+    border: 2px solid black;
+    color: black;
+
+    td {
+        border-right: 2px solid black;
+
+    }
+}
+
+:host::ng-deep .p-button {
+    margin-bottom: 25px;
+    padding: 6px;
+}
+
+.form-control.ng-touched.ng-invalid {
+    border: 2px solid red;
+}
+
+.form-control.ng-touched.ng-valid {
+    border: 2px solid green;
+}
+
+.sml.ng-invalid.ng-touched {
+    color: red;
+    font-size: 100px;
+}

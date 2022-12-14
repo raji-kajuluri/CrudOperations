@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <a class="navbar-brand text-light" href="#">CRUD OPERATIONS</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse " id="navbarNav">
+    <ul class="navbar-nav  ms-auto ">
+      <li *ngFor="let Employee of employs" class="nav-item  mx-3">
+        <a class="nav-link text-light" href="#"><b>{{Employee.navlist}}</b></a>
+      </li>
+    </ul>
+  </div>
+  <button type="button" class="btn btn-success mx-3">LogIn</button>
+</nav>
+<div class="container-fluid mt-4 mb-4 bg-white text-center">
+  <h2>CRUD</h2>
+  <p *ngFor="let content of employs1">{{content.para}}</p>
+  <p-button (click)="showBasicDialog()">Register</p-button>
+</div>
+<p-table [value]="employdata" responsiveLayout="scroll">
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngFor="let head of employs2">{{head.header}}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-row>
+    <tr>
+      <td>{{row.id}}</td>
+      <td>{{row.name}}</td>
+      <td>{{row.email}}</td>
+      <td>{{row.city}}</td>
+      <td>{{row.number}}</td>
+      <td><button (click)="onedit(row)" type="button" class="btn btn-success"><i class="pi pi-pencil"></i></button>
+        <button (click)="deleteemploy(row)" type="button" class="btn btn-danger mx-3"><i
+            class="pi pi-trash"></i></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
+<p-dialog header="Details" [(visible)]="display" [style]="{width: '30vw'}">
+  <form [formGroup]="exform">
+    <div class="form-group">
+      <label class="col-form-label"> Name</label>
+      <input formControlName="name" type="text" class="form-control">
+      <span *ngIf="exform.get('name')?.invalid && exform.get('name')?.touched " class="text-danger">Enter candidate
+        name</span>
+    </div>
+    <div class="form-group">
+      <label class="col-form-label">Email</label>
+      <input formControlName="email" type="text" class="form-control">
+      <span *ngIf="exform.get('email')?.invalid && exform.get('email')?.touched " class="text-danger">Enter Valid
+        Email</span>
+    </div>
+    <div class="form-group">
+      <label class="col-form-label">City</label>
+      <input formControlName="city" type="text" class="form-control">
+      <span *ngIf="exform.get('city')?.invalid && exform.get('city')?.touched " class="text-danger">Enter your
+        city</span>
+    </div>
+
+    <div class="form-group">
+      <label class="col-form-label">Contact Number</label>
+      <input formControlName="number" type="text" class="form-control">
+      <span *ngIf="exform.get('number')?.invalid && exform.get('number')?.touched " class="sml text-danger">Enter
+         valid contact number</span>
+    </div>
+  </form>
+  <div class="form-group d-flex">
+    <button *ngIf="showAdd" (click)="postemploy()" [disabled]="exform.invalid" type="button"
+      class="btn btn-dark mt-3 mb-3">Add</button>
+    <button [disabled]="exform.invalid" type="button" class="btn btn-dark mt-3 mb-3 ms-auto" (click)="reset()">Reset</button>
+    <button *ngIf="showUpdate" (click)="updateemploy()" [disabled]="exform.invalid" type="button"
+      class="btn btn-dark mt-3 mb-3 mx-3">Update</button>
+  </div>
+
+</p-dialog>
